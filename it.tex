@@ -155,9 +155,9 @@ We could not evaluate the model in large data due to lack of computing power.
 It is worth to confirm the performance of \name in a big data.\\
 
 \item Add more global features such as venue or h-index.\\
-In \name implementation, The number of citation of cited paper was only used as a global features. The global features from paper~\cite{Bethard:2010:ICL:1871437.1871517} could be the candidates. These includes venue, h-index, and etc.\\
+In \name implementation, The number of citation of cited paper was only used as global feature. The global features from paper~\cite{Bethard:2010:ICL:1871437.1871517} could be the candidates. These includes venue, h-index, and etc.\\
 
-\item Rather than using simple weighted sum, finding Novel formula combining NPM and global features is desirable.\\
+\item Finding Novel formula combining NPM and global features\\
 In \name implementation, We used simple weighted sum of \npm results and global features as scoring formula. Figure~\ref{fig:rq1_2} implies that the ranking improvements depends on the number of citation of cited paper. However simple weighted sum ignore the relation. Therefore, finding novel formula to combining two scores is desirable. Several machine-learning based approaches can be used to build the formula.
 \end{itemize}
 
@@ -168,7 +168,7 @@ In \name implementation, We used simple weighted sum of \npm results and global 
 \item Different retrieval date of citation count\\
 In the usage of \name, The author considers the citation count of cited paper at the time of writing. Not only we were impossible to get a citation count at the time of writing, But also the whole data size grows rapidly if we considers the citation count at the time of writing.  For example, we need a vector $[\text{doc-id}, \text{count}_{19990130}, \text{count}_{19990314}, \dots, \text{count}_{20170521}, \text{count}_{20170615}]$ for each documents in data set.
 
-Instead, we just used simple approach that uses only one citation count value at fixed date. There exists a date difference between the citation count retrieval date. Considering the highly-cited paper are likely to highly-cited further, there is a strong relationship between citation count at the time of writing and fixed point. This simple approximates still able to approximate the citation count effectively while saving the data size a lot.\\
+Instead, we just used simple approach that uses only one citation count value at fixed date. There exists a difference between the citation count retrieval dates. Considering the highly-cited paper are likely to highly-cited further, there is a strong relationship between citation count at the time of writing and fixed point. This simple approximates able to approximate the citation count still effectively while saving the data size a lot.\\
 
 \item Inaccurate citation count\\
 We used a citation count which is captured by google scholar. So wrong results of Google scholar can pollute the citation count. To remove the pollution effect, we suggests to conduct experiments on a well structured citation count records for future works, such as database from \texttt{ACM}, or \texttt{IEEE}.
