@@ -128,7 +128,7 @@ Table~\ref{table:rq1} contains the ranking results of \npm and \name. As mention
 
 \begin{figure}[ht]
 \centering
-\includegraphics[width= 0.7\textwidth]{rq1.pdf}
+\includegraphics[width= 0.5\textwidth]{rq1.pdf}
 \caption{Ranking Result of \name and \npm \label{fig:rq1}}
 \end{figure}
 
@@ -136,7 +136,7 @@ Figure~\ref{fig:rq1} shows the ranking results visually. The X-axis is the ranki
 
 \begin{figure}[ht]
 \centering
-\includegraphics[width= \textwidth]{rq1_2.pdf}
+\includegraphics[width= 0.7\textwidth]{rq1_2.pdf}
 \caption{Relation between ranking Improvements and citition count \label{fig:rq1_2}}
 \end{figure}
 
@@ -170,7 +170,7 @@ In \name implementation, We used simple weighted sum of \npm results and global 
 
 \begin{itemize}
 \item Different retrieval date of citation count\\
-In the usage of \name, The author considers the citation count of cited paper at the time of writing. Not only we were impossible to get a citation count at the time of writing, But also the whole data size grows rapidly if we considers the citation count at the time of writing.  For example, we need a vector $[\text{doc-id}, \text{count}_{19990130}, \text{count}_{19990314}, \dots, \text{count}_{20170521}, \text{count}_{20170615}]$ for each documents in data set.
+In the usage of \name, The author considers the citation count of cited paper at the time of writing. Not only we were impossible to get a citation count at the time of writing, But also the whole data size grows rapidly if we considers the citation count at the time of writing. To consider precise citation counts, We need a vector that records citation count every time it is cited by another document in the training data for each documents in data set. For example, $[\text{doc-id}, \text{count}_{19990130}, \text{count}_{19990314}, \dots, \text{count}_{20170521}, \text{count}_{20170615}]$.
 
 Instead, we just used simple approach that uses only one citation count value at fixed date. There exists a difference between the citation count retrieval dates. Considering the highly-cited paper are likely to highly-cited further, there is a strong relationship between citation count at the time of writing and fixed point. This simple approximates able to approximate the citation count still effectively while saving the data size a lot.\\
 

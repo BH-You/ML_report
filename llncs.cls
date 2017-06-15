@@ -52,7 +52,7 @@
 \RequirePackage{multicol} % needed for the list of participants, index
 \RequirePackage{aliascnt}
 
-\setlength{\textwidth}{12.2cm}
+\setlength{\textwidth}{17cm}
 \setlength{\textheight}{19.3cm}
 \renewcommand\@pnumwidth{2em}
 \renewcommand\@tocrmarg{3.5em}
@@ -199,7 +199,7 @@
 \global\let\@textbottom\relax}}
 
 \renewcommand\small{%
-   \@setfontsize\small\@ixpt{11}%
+   \@setfontsize\small\@ixpt{10}%
    \abovedisplayskip 8.5\p@ \@plus3\p@ \@minus4\p@
    \abovedisplayshortskip \z@ \@plus2\p@
    \belowdisplayshortskip 4\p@ \@plus2\p@ \@minus2\p@
@@ -214,8 +214,8 @@
 \widowpenalty=10000
 \clubpenalty=10000
 
-\setlength\oddsidemargin   {63\p@}
-\setlength\evensidemargin  {63\p@}
+\setlength\oddsidemargin   {0\p@}
+\setlength\evensidemargin  {0\p@}
 \setlength\marginparwidth  {90\p@}
 
 \setlength\headsep   {16\p@}
@@ -475,7 +475,7 @@ to0pt{\kern0.55\wd0\vrule height0.45\ht0\hss}\box0}}}}
 
 \let\ts\,
 
-\setlength\leftmargini  {17\p@}
+\setlength\leftmargini  {0\p@}
 \setlength\leftmargin    {\leftmargini}
 \setlength\leftmarginii  {\leftmargini}
 \setlength\leftmarginiii {\leftmargini}
