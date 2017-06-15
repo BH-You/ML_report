@@ -18,15 +18,15 @@
 
 \newcommand{\name}{\texttt{G-NPM}\xspace}
 \newcommand{\npm}{\texttt{NPM}\xspace}
-\newcommand{\todo}[1]{\texttt{\color{red}TODO:#1}} 
+\newcommand{\todo}[1]{\texttt{\color{red}TODO:#1}}
 \begin{document}
 
 
-\title{G-NPM : Local Citation Recommendation System  With Global-Features}
+\title{G-NPM:  Local Citation Recommendation System  with Global Features}
 
-\author{Byeonghyeon You\inst{1}, Seongmin Lee\inst{1}, Junbeom Lee\inst{1}, Jinhan Kim\inst{1}}
+\author{Byeonghyeon You, Seongmin Lee, Junbeom Lee, Jinhan Kim}
 
-\institute{Korea Advanced Institute of Science and Technology, Republic of Korea}
+\institute{Korea Advanced Institute of Science and Technology\\Republic of Korea}
 
 \maketitle
 
@@ -37,12 +37,25 @@
 
 \section{Introduction}
 \label{sec:introduction}
-\todo{JH}
+As academic communities have published about the millions of research papers, finding appropriate citations become burdensome for researchers. Citation recommendation systems[] have cut down the overload of finding citations by automatically suggesting papers which might be related to the topic.
+
+
+There are two main categories in citation recommendation, global and local citation recommendataion.
+The first category, global citation recommendation, recommends a list of candidate papers by examining some part of the entire paper. In addition to exmaine the text, global citation recommendation systems use the external features such as information of author, venue, citation count, and h-index. These external features can make recommendation model more accurate.
+The second category, local citation recommendation, recommends a list of candidate papers by just looking a sentence which is called citation context. Local citation recommendation systems only take citation context as an input, suggest papers which is relevant to that context. Intuitively, it is more practical to use than global citation recommendation systems.
+
+
+Although the current state-of-the-art local citation recommendation system[] outperformed other approaches[], it showed relatively poor in recommending well-cited papers. Since global and local has own advantages, in this project, we propose the new citation recommendation system which is local citation recommendation system with global external features. We use citation count as a global external feature.
+
 
 \section{Background}
-\todo{JH}
+This section describes the two citation recommendation models.
+
 \subsection{Neural Probabilistic Model}
 Neural Probabilistic Model, \npm ~\cite{Huang:2015:NPM:2886521.2886655}
+
+NPM(Neural Probabilistic Model) is local citation recommendation model that learns the citing paper with given citation contexts. Training is separated into two parts, word representation learning and document representation learning. To learn words, they used negative sampling[] that is used to learn the distribution of words. To learn documents with words, they used noise-contrastive estimation[] that is used to learn the distribution of words and documents.
+
 \subsection{Literature Search Model}
 Literature Search Model~\cite{Bethard:2010:ICL:1871437.1871517}
 
@@ -59,10 +72,17 @@ Literature Search Model~\cite{Bethard:2010:ICL:1871437.1871517}
 \item Is the G-NPM a model that can be applied competently on systems with small input data?
 \end{enumerate}
 \subsection{Setup}
-\todo{JB}
+For all experiments we used the same data set used in [2] which is a snapshot of Citeseer paper and citation database was obtained at Oct, 2013. The data is composed of three tables with unprocessed SQL data(90GB): citation table, citation context table, paper table. The citation table consists of cited paper id and citing paper id. The citation context table consists of the cited paper id and its context. One citation context consists of the sentence where a citation appears, as well as the sentences that appear before and after. The paper table consists of paper id. As a result, all the data set contains about 10,000,000 contexts and about 1,000,000 unique papers.
+It took 4 days to only import the data set and we could not used as much resources as they[2] used for their experiments. Therefore, we randomly extracted 1 from the original data. The training data is consisted of 10520 contexts and 5613 cited papers. As test data, 999 contexts and corresponding 359 papers were randomly selected and tested.
+
+
+Table 1
+
+For text normalization, rare words that appear less than 5 times are filtered out and we did not distinguish between uppercase/lowercase words. In all experiments, we use the citation contexts and cited papers extracted from the test set as ground truth. Unlike the target paper the number of recommendations is not limited to 10 for each query because we only trained small amount of data which is causing less effective recommendation performance.
 
 \subsection{Evaluation Metric}
-\todo{JB}
+We used 3 well-known metrics which are average rank, average rank at 10 and Mean Reciprocal Rank(MRR) on the information retrieval system to evaluate the ranking obtained from G-NPM. Average rank is the average value of recommended ranking. The rank means the order of the papers that are likely to be recommended. Average ranking at 10 is the average value of recommended ranking where the appropriate cited paper was assigned within top 10. The MRR is a statistic measure for evaluating any process that produces a list of possible responses to a sample of queries, ordered by probability of correctness. The reciprocal rank of a query response is the multiplicative inverse of the rank of the first correct answer.
+
 
 \section{Results}
 \todo{BH}
