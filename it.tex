@@ -61,22 +61,20 @@ Literature search model~\cite{Bethard:2010:ICL:1871437.1871517} takes only abstr
 It uses iterative process for learning weights between global features.
 
 \section{\name: A new citation recommendation system}
-\todo{SM}
-The state of art npm 모델의 main contribution point 중 하나의 less cited 된 paper에 대한 recomentation 이다. paper 가 적게 cited 되었다는 것은, 다른 말로 하면 그 paper 에 대한 training data가 부족하다는 말과 같다. training data의 양은 learning 의 결과에 큰 영향을 미칠 수 있고, 따라서 적게 cited 된 paper를 well recommendation 하는 것은 citation recommendation system에서 어려운 task 중 하나이다. npm 이 다른 model 들과 비교하였을 때 less cited paper 에 대해서 잘 recommend 했다는 것은 그들의 큰 강점이다.
-그러나 이와 같은 npm의 장점에도 불구하고 npm은 플어야 할 숙제가 몇가지가 있다. 먼저 less cited paper에 대한 큰 improvement에 비하여, well cited paper 에 대한 recommendation 의 성적은 다른 모델에 비해서 크게 달라진 점은 없다. npm은 각 paper에 대한 external 한 information 은 사용하지 않고 오로지 text 기반으로 learning을 하였다. 따라서 well cited paper 들이 더욱 많은 training information을 가지고 있음에도 불구하고 이에 대한 advantage를 충분히 활용하고 있지 못하다. 또한 npm은 굉장히 큰 데이터를 필요로 한다. 비록 주어진 데이터에 대해서 적은 volume을 차지하는 less cited paper에 대해서 결과를 잘 내어놓을 순 있었지만 이 때 사용되었던 데어터의 양은 ... 로 매우 컸다. We found out that, the training data size for this paper was over 90Gb. And the developer said the training time took a week with 24-core cpu to get to 200 iterations.
-[따라서 global을 쓸꺼다, linear sum 으로 global 한 feature를 넣을꺼고, 그에 따른 효과는 이러이러할 것이라고 생각한다.] Then, we found several papers, those use, not textual informations but global informations to recommend the paper, such as number of citations, venue, h-index, etc.
-These global features are worthy features.
-It is appropriate features to enhance the performance of well-cited papers.
-Also, adding the new features to the model can help to reduce the importance of the amount of training data.
+
+One of the main contribution points of the state-of-art NPM model is the recommendation of less cited papers. The fact that paper has been cited less is, in other words, a lack of training data for the paper. The amount of training data can have a significant impact on the outcome of learning, and therefore, recommending a less cited paper is one of the difficult tasks in the citation recommendation system. It is their great strength to recommend the less cited papers when NPM is compared to other models.
+
+However, despite the advantages of NPM, NPM has a few homework assignments. First, the recommendation for well-cited paper is not significantly different from other models, compared to the larger improvement for a less cited paper. NPM did not use external information for each paper but only text based learning. Therefore, although well-cited papers have more training information, they are not taking full advantage of this dense data. NPM also requires very large amounts of data. Although we could make a good result for a less cited paper which occupied a small volume for given data, the amount of data used at that time was very large. We found that the training data size for this paper was over 90Gb. And the developer said the training took a week with 24-core CPU to get 200 iterations.
+
+The global features used on the literature search model~\cite{Bethard:2010:ICL:1871437.1871517} above, are worthy features that could be used to solve these problems. It is appropriate features to enhance the performance of well-cited papers. Also, adding the new features to the model can help to reduce the importance of the amount of training data. So, based on these approaches, we introduce new citation recommendation system G-NPM, which combines the score of NPM and one of the global features, citation counts, with linear summation. And using this model, we wish to improve the quality of citation recommendation as well as to reduce the load of the amount of training data.
 
 \section{Experiments}
 \subsection{Research Questions}
-\todo{SM}
 
-[위에서 말한 효과를 검증하기 위하여 다음과 같은 research question을 설정한다.]
+To verify the effects of global features on the problems of NPM described above, we set up the following research question.
 \begin{enumerate}
-\item Does \name use global information(citation count) to improve the efficiency of citation recommendation system?
-\item Is the \name a model that can be applied competently on systems with small input data?
+\item Does G-NPM use global information(citation count) to improve the efficiency of citation recommendation system?
+\item Is the G-NPM a model that can be applied competently on systems with small input data?
 \end{enumerate}
 
 \subsection{Setup}
@@ -101,7 +99,7 @@ For text normalization, rare words that appear less than five times are filtered
 
 \subsection{Evaluation Metric}
 \label{sec:metric}
-We used three well-known metrics which are average rank, average rank at 10 and Mean Reciprocal Rank(MRR) on the information retrieval system to evaluate the ranking obtained from \name. The average rank is the average value of recommended ranking. The rank means the order of the papers that are likely to be recommended. Average ranking at 10 is the average value of recommended ranking where the appropriate cited paper was assigned within top 10. The MRR is a�statistic�measure for evaluating any process that produces a list of possible responses to a sample of queries, ordered by probability of correctness. The reciprocal rank of a query response is the�multiplicative inverse�of the rank of the first correct answer.
+We used three well-known metrics which are average rank, average rank at 10 and Mean Reciprocal Rank(MRR) on the information retrieval system to evaluate the ranking obtained from \name. The average rank is the average value of recommended ranking. The rank means the order of the papers that are likely to be recommended. Average ranking at 10 is the average value of recommended ranking where the appropriate cited paper was assigned within top 10. The MRR is a statistic measure for evaluating any process that produces a list of possible responses to a sample of queries, ordered by probability of correctness. The reciprocal rank of a query response is the multiplicative inverse of the rank of the first correct answer.
 
 
 \section{Results}
