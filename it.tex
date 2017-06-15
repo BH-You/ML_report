@@ -75,8 +75,18 @@ It uses iterative process for learning weights between global features.
 For all experiments we used the same data set used in [2] which is a snapshot of Citeseer paper and citation database was obtained at Oct, 2013. The data is composed of three tables with unprocessed SQL data(90GB): citation table, citation context table, paper table. The citation table consists of cited paper id and citing paper id. The citation context table consists of the cited paper id and its context. One citation context consists of the sentence where a citation appears, as well as the sentences that appear before and after. The paper table consists of paper id. As a result, all the data set contains about 10,000,000 contexts and about 1,000,000 unique papers.
 It took 4 days to only import the data set and we could not used as much resources as they[2] used for their experiments. Therefore, we randomly extracted 1 from the original data. The training data is consisted of 10520 contexts and 5613 cited papers. As test data, 999 contexts and corresponding 359 papers were randomly selected and tested.
 
-
-Table 1
+\begin{table}[ht]
+\centering
+\begin{tabular}{l || p{0.3 \textwidth} | p{0.3 \textwidth}}
+\toprule
+& Number of paper & Number of contexts \\
+\midrule
+Training Data & 5613 & 10520 \\
+\bottomrule
+\end{tabular}
+\caption{The number of paper and context used in training and testing}\label{table:data}
+\vspace{-2em}
+\end{table}
 
 For text normalization, rare words that appear less than 5 times are filtered out and we did not distinguish between uppercase/lowercase words. In all experiments, we use the citation contexts and cited papers extracted from the test set as ground truth. Unlike the target paper the number of recommendations is not limited to 10 for each query because we only trained small amount of data which is causing less effective recommendation performance.
 
@@ -104,6 +114,7 @@ MRR & 0.035 & 0.084\\
 \bottomrule
 \end{tabular}
 \caption{Evaluation of \npm and \name ranking}\label{table:rq1}
+\vspace{-2em}
 \end{table}
 
 Table~\ref{table:rq1} contains the ranking results of \npm and \name. As mentioned in Section~\ref{sec:metric}, the lower the Average rank, the better. Average Rank of \npm was 55, while  that of \name was 30. It means that we have to see 55 paper to find a relevant paper in \npm. But in \name, the human's reading efforts drops to 30. This cuts human efforts in half. For accuracy at 10. \npm placed the relevant paper in top ten in 26 cases, while \npm locates 53 papers. \name is twice more effective than \npm. Finally in MRR, \name recorded 0.084, but \npm recorded 0.035
@@ -122,7 +133,7 @@ Figure~\ref{fig:rq1} shows the ranking results visually. The X-axis is the ranki
 \caption{Relation between ranking Improvements and citition count \label{fig:rq1_2}}
 \end{figure}
 
-Reminding motivation of the research, We tried to improve the ranking of highly cited paper. Figure~\ref{fig:rq1_2} shows that as the paper cited more, the improvement in ranking was greater.  The observation results about number of positive cases and negative cases and their effect size from Figure~\ref{fig:rq1}  can be re-observed in  \ref{fig:rq1_2}.
+Reminding motivation of the research, We tried to improve the ranking of highly cited paper. Figure~\ref{fig:rq1_2} shows that as the paper cited more, the improvement in ranking was greater.  The observation results about number of positive cases and negative cases and their effect size from Figure~\ref{fig:rq1}  can be re-observed in  Figure~\ref{fig:rq1_2}.
 
 
 \subsection{Performance ob Small Data Set}
@@ -131,7 +142,26 @@ In the experiments, We used small size of training data. Using small training da
 
 
 \section{Discussion}
-\todo{BH}
+
+
+\subsection{Future works}
+
+\begin{itemize}
+
+\item Experiments of name over large-scale training data set.\\
+We could not evaluate the model in large data due to lack of computing power.
+It is worth to confirm the performance of \name in a big data.\\
+
+\item Add more global features such as venue or h-index.\\
+In \name implementation, The number of citation of cited paper was only used as a global features. The global features from paper~\cite{Bethard:2010:ICL:1871437.1871517} could be the candidates. These includes venue, h-index, and etc.\\
+
+\item Rather than using simple weighted sum, finding Novel formula combining NPM and global features is desirable.\\
+In \name implementation, We used simple weighted sum of \npm results and global features as scoring formula. Figure~\ref{fig:rq1_2} implies that the ranking improvements depends on the number of citation of cited paper. However simple weighted sum ignore the relation. Therefore, finding novel formula to combining two scores is desirable. Several machine-learning based approaches can be used to build the formula.
+
+\end{itemize}
+
+\subsection{Threats to Validity}
+
 
 \section{Conclusion}
 \label{sec:Conclusion}
