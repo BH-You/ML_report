@@ -48,7 +48,9 @@ Literature Search Model~\cite{Bethard:2010:ICL:1871437.1871517}
 
 \section{\name: A new citation recommendation system}
 \todo{SM}
-
+The state of art npm 모델의 main contribution point 중 하나의 less cited 된 paper에 대한 recomentation 이다. paper 가 적게 cited 되었다는 것은, 다른 말로 하면 그 paper 에 대한 training data가 부족하다는 말과 같다. training data의 양은 learning 의 결과에 큰 영향을 미칠 수 있고, 따라서 적게 cited 된 paper를 well recommendation 하는 것은 citation recommendation system에서 어려운 task 중 하나이다. npm 이 다른 model 들과 비교하였을 때 less cited paper 에 대해서 잘 recommend 했다는 것은 그들의 큰 강점이다.
+그러나 이와 같은 npm의 장점에도 불구하고 npm은 플어야 할 숙제가 몇가지가 있다. 먼저 less cited paper에 대한 큰 improvement에 비하여, well cited paper 에 대한 recommendation 의 성적은 다른 모델에 비해서 크게 달라진 점은 없다. npm은 각 paper에 대한 external 한 information 은 사용하지 않고 오로지 text 기반으로 learning을 하였다. 따라서 well cited paper 들이 더욱 많은 training information을 가지고 있음에도 불구하고 이에 대한 advantage를 충분히 활용하고 있지 못하다. 또한 npm은 굉장히 큰 데이터를 필요로 한다. 비록 주어진 데이터에 대해서 적은 volume을 차지하는 less cited paper에 대해서 결과를 잘 내어놓을 순 있었지만 이 때 사용되었던 데어터의 양은 ... 로 매우 컸다.
+[]
 
 \section{Experiments}
 \subsection{Research Questions}
